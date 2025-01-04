@@ -1,6 +1,9 @@
 from .models import CustomUser
 from rest_framework import serializers
 
+# para el login 
+from django.contrib.auth import authenticate
+
 
 # Add serializers for user registration and authentication with JWT
 class CustomSerializer(serializers.ModelSerializer):
@@ -33,3 +36,13 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         return CustomUser.objects.create_user(password=password, **validated_data)
 
 # Define serializeer login
+
+class UserLoginSerializer(serializers.Serializer):
+    email = serializers.CharField()
+    password = serializers.CharField(write_only=True)
+
+    def validate(self, data):
+        user = authenticate(**data)
+        if user and user.is_active:
+            return user
+        raise serializers.ValidationError("Incorrect Credential")
