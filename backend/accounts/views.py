@@ -23,4 +23,20 @@ class UserRegistrationAPIViews(GenericAPIView):
         data["tokens"] = {"refresh":str(token),
                           "access": str(token.access_token)}
         return Response(data, status= status.HTTP_201_CREATED)
-    
+
+class UserLogoutAPIView(GenericAPIView):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = UserLoginSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializers = self.get_serializer(data = request.data)
+        serializers.is_valid(raise_exception=True)
+        user = serializers.validated_data
+        serializers = CustomSerializer(user)
+        token = RefreshToken.for_user(user)
+        data = serializers.data
+        data["tokens"] = {"refresh":str(token),
+                          "access": str(token.access_token)}
+        return Response(data, status= status.HTTP_201_CREATED)
+
+
