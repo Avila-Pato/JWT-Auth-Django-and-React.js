@@ -1,6 +1,8 @@
 from .models import CustomUser
 from rest_framework import serializers
 
+
+# Add serializers for user registration and authentication with JWT
 class CustomSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
