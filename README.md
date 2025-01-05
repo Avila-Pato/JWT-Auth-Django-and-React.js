@@ -1,6 +1,6 @@
-# Tutorial Paso a Paso: Crear una Aplicación Web Full-Stack con Autenticación Basada en JWT
+# Aplicación Web Full-Stack con Autenticación Basada en JWT
 
-En este tutorial paso a paso, crearemos una aplicación web full-stack completa con autenticación basada en JWT. Utilizaremos **Django + DRF** para el backend y **React.js** para el frontend.
+ Aplicación web full-stack completa con autenticación basada en JWT. Utilizaremos **Django + DRF** para el backend y **React.js** para el frontend.
 
 ## Backend: Django y Django Rest Framework (DRF)
 Crearemos APIs RESTful para manejar:
